@@ -3,7 +3,6 @@ function submit(){
     var inputs   = form_div.getElementsByTagName("input");
     var username = inputs[0].value;
     var password = inputs[1].value;
-    var ausgabe = "hallo " + username;
 
     md5_password = md5(password + username)
     output(username + " " + md5_password)
@@ -11,11 +10,11 @@ function submit(){
 }
 
 function rest_send(username_, password_){                               
-    let data = {user: username_, password:password_};                   
+    let data = {username: username_, password:password_};                   
     var xhr = new XMLHttpRequest();                                     
                                                                         
     // url anpassen                                                     
-    xhr.open("POST", "http://192.168.234.14:5000/user_accounts" , true);
+    xhr.open("POST", "http://192.168.234.13:5000/user_accounts" , true);
     xhr.setRequestHeader('Content-Type', 'application/json');           
     json_data = JSON.stringify(data);                                   
     xhr.send(json_data);
@@ -27,7 +26,7 @@ function output(text){
     var node = document.createTextNode(text);   //  "hier mein text"        
     para.appendChild(node);   //<p>hier mein text child</p>                   
     document.getElementById("console").appendChild(para); // text ganz oben im Tag reinschreiben 
-    para.scrollIntoView();   //scroll auf das oberste                              
+    para.scrollIntoView();   //scroll auf das oberste (funktioniert noch nicht)                             
 }                                                          
 
 function md5(inputString) {
